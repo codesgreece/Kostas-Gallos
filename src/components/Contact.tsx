@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { useState, type FormEvent } from "react";
 import { Phone, Send } from "lucide-react";
 import { SITE } from "@/lib/constants";
 
