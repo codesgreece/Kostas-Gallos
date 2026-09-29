@@ -28,7 +28,22 @@ npm start
 ## Ρυθμίσεις
 
 - Τηλέφωνο και κείμενα: `src/lib/constants.ts`
-- URL ιστότοπου (SEO): μεταβλητή περιβάλλοντος `NEXT_PUBLIC_SITE_URL`
+- URL ιστότοπου (SEO): μεταβλητή περιβάλλοντος `NEXT_PUBLIC_SITE_URL` (π.χ. `https://kostaskipoi.vercel.app`)
+
+## Vercel deploy
+
+Το project είναι Next.js. Το `vercel.json` ορίζει ρητά `framework: nextjs`.
+
+Αν βλέπετε Vercel 404 (`NOT_FOUND`) ενώ το domain δείχνει Valid Configuration:
+
+1. **Vercel → Project → Settings → Deployment Protection**  
+   Απενεργοποιήστε την προστασία για **Production** (ή κρατήστε την μόνο για Preview), ώστε η σελίδα να είναι δημόσια.
+2. **Vercel → Deployments**  
+   Ανοίξτε το τελευταίο Production deployment από `main` και κάντε **Redeploy** αν χρειάζεται.
+3. **Vercel → Settings → General → Framework Preset**  
+   Πρέπει να είναι **Next.js** (όχι Other).
+4. **Root Directory**  
+   Πρέπει να είναι `./` (root του repo).
 
 ## Σημειώσεις
 
