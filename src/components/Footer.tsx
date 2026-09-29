@@ -27,8 +27,21 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col gap-2 border-t border-white/10 pt-6 text-sm text-white/50 sm:flex-row sm:items-center sm:justify-between">
-          <p>Copyright © 2026 {SITE.name}</p>
+        <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-white/50 sm:flex-row sm:items-center sm:justify-between">
+          <div className="space-y-3">
+            <p>Copyright © 2026 {SITE.name}</p>
+            <p className="flex flex-wrap items-center gap-2">
+              <span>Φτιάχτηκε από</span>
+              <a
+                href="https://www.nexusdevstudio.gr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="focus-ring inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-white transition hover:border-green-soft/50 hover:bg-green-soft/15 hover:text-green-soft"
+              >
+                NexusDevStudio Greece
+              </a>
+            </p>
+          </div>
           <a href="#top" className="focus-ring rounded-md hover:text-white">
             Επιστροφή στην κορυφή
           </a>
