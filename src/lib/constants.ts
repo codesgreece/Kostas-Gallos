@@ -7,7 +7,7 @@ export const SITE = {
   title: "Κώστας Γάλλος | Κηπουρική & Συντήρηση Κήπων",
   description:
     "Κηπουρική, συντήρηση κήπων, κοπή χόρτων, καθαρισμός οικοπέδων, φυσικός χλοοτάπητας και φροντίδα πρασίνου από τον Κώστα Γάλλο με 20 χρόνια εμπειρίας στην Ελβετία.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://kostasgallos.gr",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://kostaskipoi.vercel.app",
 } as const;
 
 export const NAV_LINKS = [
