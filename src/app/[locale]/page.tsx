@@ -9,6 +9,7 @@ import Process from "@/components/Process";
 import CTA from "@/components/CTA";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import ScrollFallingLeaves from "@/components/ScrollFallingLeaves";
 import { isLocale } from "@/i18n/config";
 
 type PageProps = {
@@ -21,6 +22,7 @@ export default async function Home({ params }: PageProps) {
 
   return (
     <>
+      <ScrollFallingLeaves />
       <main id="main">
         <Hero locale={locale} />
         <ExperienceSection locale={locale} />
