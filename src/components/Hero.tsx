@@ -27,20 +27,16 @@ export default function Hero({ locale }: HeroProps) {
         aria-hidden
       />
 
-      <div className="relative container-narrow flex min-h-[100svh] flex-col justify-end px-5 pb-28 pt-32 sm:justify-center sm:pb-24 sm:pt-28 md:pb-20">
+      <div className="relative container-narrow flex min-h-[100svh] flex-col justify-end px-5 pb-28 pt-36 sm:justify-center sm:pb-24 sm:pt-32 md:pb-20">
         <div className="max-w-3xl">
-          <p className="reveal mb-4 text-sm font-medium tracking-[0.18em] text-beige-soft uppercase sm:text-[0.8rem]">
-            {dict.site.name} · {dict.site.tagline}
-          </p>
-
           <h1
             id="hero-heading"
-            className="reveal reveal-delay-1 font-display text-[2.35rem] leading-[1.12] font-semibold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-[4.25rem]"
+            className="reveal font-display text-[2.35rem] leading-[1.12] font-semibold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-[4.25rem]"
           >
             {dict.hero.headline}
           </h1>
 
-          <p className="reveal reveal-delay-2 mt-5 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg md:text-xl">
+          <p className="reveal reveal-delay-1 mt-5 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg md:text-xl">
             {dict.hero.subhead}
           </p>
 
