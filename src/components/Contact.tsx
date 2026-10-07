@@ -3,8 +3,15 @@
 import { useState, type FormEvent } from "react";
 import { Phone, Send } from "lucide-react";
 import { SITE } from "@/lib/constants";
+import { getDictionary } from "@/i18n/dictionaries";
+import type { Locale } from "@/i18n/config";
 
-export default function Contact() {
+type ContactProps = {
+  locale: Locale;
+};
+
+export default function Contact({ locale }: ContactProps) {
+  const dict = getDictionary(locale);
   const [submitted, setSubmitted] = useState(false);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -21,20 +28,20 @@ export default function Contact() {
       <div className="container-narrow grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
         <div>
           <p className="mb-3 text-sm font-semibold tracking-[0.16em] text-green-natural uppercase">
-            Επικοινωνία
+            {dict.contact.eyebrow}
           </p>
           <h2
             id="contact-heading"
             className="font-display text-3xl font-semibold text-green-deep sm:text-4xl"
           >
-            Επικοινωνήστε μαζί μας
+            {dict.contact.title}
           </h2>
 
           <div className="mt-8 rounded-[1.5rem] border border-green-deep/10 bg-white p-6 shadow-[var(--shadow-soft)] sm:p-8">
             <p className="font-display text-2xl font-semibold text-green-deep">
-              {SITE.name}
+              {dict.site.name}
             </p>
-            <p className="mt-1 text-muted">{SITE.tagline}</p>
+            <p className="mt-1 text-muted">{dict.site.tagline}</p>
 
             <a
               href={SITE.phoneHref}
@@ -51,19 +58,16 @@ export default function Contact() {
               className="focus-ring mt-8 flex min-h-14 w-full items-center justify-center gap-2 rounded-full bg-green-deep text-base font-semibold text-white transition hover:bg-green-mid sm:w-auto sm:px-8"
             >
               <Phone className="size-5" aria-hidden />
-              Καλέστε τώρα
+              {dict.contact.callNow}
             </a>
           </div>
         </div>
 
         <div className="rounded-[1.5rem] border border-green-deep/10 bg-white p-6 shadow-[var(--shadow-soft)] sm:p-8">
           <h3 className="font-display text-xl font-semibold text-green-deep">
-            Στείλτε μήνυμα
+            {dict.contact.formTitle}
           </h3>
-          <p className="mt-2 text-sm text-muted">
-            Η φόρμα είναι έτοιμη για σύνδεση με υπηρεσία email. Μέχρι τότε, η
-            άμεση επικοινωνία γίνεται τηλεφωνικά.
-          </p>
+          <p className="mt-2 text-sm text-muted">{dict.contact.formHint}</p>
 
           {submitted ? (
             <div
@@ -71,17 +75,17 @@ export default function Contact() {
               role="status"
             >
               <p className="font-medium text-green-deep">
-                Ευχαριστούμε για το ενδιαφέρον σας.
+                {dict.contact.thanksTitle}
               </p>
               <p className="mt-2 text-sm leading-relaxed text-muted">
-                Η αποστολή μέσω φόρμας δεν είναι ακόμα ενεργή. Καλέστε μας στο{" "}
+                {dict.contact.thanksBodyBefore}{" "}
                 <a
                   href={SITE.phoneHref}
                   className="font-semibold text-green-deep underline-offset-2 hover:underline"
                 >
                   {SITE.phoneDisplay}
                 </a>{" "}
-                για άμεση επικοινωνία.
+                {dict.contact.thanksBodyAfter}
               </p>
             </div>
           ) : (
@@ -91,7 +95,7 @@ export default function Contact() {
                   htmlFor="name"
                   className="mb-1.5 block text-sm font-medium text-ink"
                 >
-                  Ονοματεπώνυμο
+                  {dict.contact.name}
                 </label>
                 <input
                   id="name"
@@ -100,7 +104,7 @@ export default function Contact() {
                   autoComplete="name"
                   required
                   className="focus-ring w-full rounded-xl border border-green-deep/15 bg-off-white px-4 py-3 text-base text-ink outline-none transition placeholder:text-muted/60 focus:border-green-natural"
-                  placeholder="Το ονοματεπώνυμό σας"
+                  placeholder={dict.contact.namePlaceholder}
                 />
               </div>
               <div>
@@ -108,7 +112,7 @@ export default function Contact() {
                   htmlFor="phone"
                   className="mb-1.5 block text-sm font-medium text-ink"
                 >
-                  Τηλέφωνο
+                  {dict.contact.phone}
                 </label>
                 <input
                   id="phone"
@@ -117,7 +121,7 @@ export default function Contact() {
                   autoComplete="tel"
                   required
                   className="focus-ring w-full rounded-xl border border-green-deep/15 bg-off-white px-4 py-3 text-base text-ink outline-none transition placeholder:text-muted/60 focus:border-green-natural"
-                  placeholder="Το τηλέφωνό σας"
+                  placeholder={dict.contact.phonePlaceholder}
                 />
               </div>
               <div>
@@ -125,14 +129,14 @@ export default function Contact() {
                   htmlFor="need"
                   className="mb-1.5 block text-sm font-medium text-ink"
                 >
-                  Τι χρειάζεστε;
+                  {dict.contact.need}
                 </label>
                 <input
                   id="need"
                   name="need"
                   type="text"
                   className="focus-ring w-full rounded-xl border border-green-deep/15 bg-off-white px-4 py-3 text-base text-ink outline-none transition placeholder:text-muted/60 focus:border-green-natural"
-                  placeholder="π.χ. κοπή χόρτων, συντήρηση κήπου"
+                  placeholder={dict.contact.needPlaceholder}
                 />
               </div>
               <div>
@@ -140,14 +144,14 @@ export default function Contact() {
                   htmlFor="message"
                   className="mb-1.5 block text-sm font-medium text-ink"
                 >
-                  Μήνυμα
+                  {dict.contact.message}
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   rows={4}
                   className="focus-ring w-full resize-y rounded-xl border border-green-deep/15 bg-off-white px-4 py-3 text-base text-ink outline-none transition placeholder:text-muted/60 focus:border-green-natural"
-                  placeholder="Περιγράψτε σύντομα τον χώρο ή την ανάγκη σας"
+                  placeholder={dict.contact.messagePlaceholder}
                 />
               </div>
               <button
@@ -155,7 +159,7 @@ export default function Contact() {
                 className="focus-ring inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-green-deep px-6 text-base font-semibold text-white transition hover:bg-green-mid sm:w-auto"
               >
                 <Send className="size-4" aria-hidden />
-                Αποστολή
+                {dict.contact.send}
               </button>
             </form>
           )}

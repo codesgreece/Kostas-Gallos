@@ -1,7 +1,15 @@
 import { Phone } from "lucide-react";
 import { SITE } from "@/lib/constants";
+import { getDictionary } from "@/i18n/dictionaries";
+import type { Locale } from "@/i18n/config";
 
-export default function CTA() {
+type CTAProps = {
+  locale: Locale;
+};
+
+export default function CTA({ locale }: CTAProps) {
+  const dict = getDictionary(locale);
+
   return (
     <section
       className="section-pad relative overflow-hidden bg-green-mid"
@@ -20,11 +28,10 @@ export default function CTA() {
           id="cta-heading"
           className="font-display text-3xl font-semibold text-white sm:text-4xl md:text-5xl"
         >
-          Ο κήπος σας χρειάζεται φροντίδα;
+          {dict.cta.title}
         </h2>
         <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
-          Από τη συντήρηση και την κοπή χόρτων μέχρι το φυσικό γκαζόν και τη
-          φροντίδα των δέντρων, αναλαμβάνουμε τη δουλειά.
+          {dict.cta.body}
         </p>
         <a
           href={SITE.phoneHref}

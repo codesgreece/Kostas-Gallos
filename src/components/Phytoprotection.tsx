@@ -1,6 +1,14 @@
 import { Leaf, Users } from "lucide-react";
+import { getDictionary } from "@/i18n/dictionaries";
+import type { Locale } from "@/i18n/config";
 
-export default function Phytoprotection() {
+type PhytoprotectionProps = {
+  locale: Locale;
+};
+
+export default function Phytoprotection({ locale }: PhytoprotectionProps) {
+  const dict = getDictionary(locale);
+
   return (
     <section
       id="fytoprostasia"
@@ -22,19 +30,16 @@ export default function Phytoprotection() {
       <div className="container-narrow relative grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
         <div>
           <p className="mb-3 text-sm font-semibold tracking-[0.16em] text-green-soft uppercase">
-            Φυτοπροστασία
+            {dict.phyto.eyebrow}
           </p>
           <h2
             id="phyto-heading"
             className="font-display text-3xl leading-tight font-semibold sm:text-4xl md:text-[2.6rem]"
           >
-            Όταν το πράσινο χρειάζεται εξειδικευμένη φροντίδα
+            {dict.phyto.title}
           </h2>
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
-            Δεν αναλαμβάνουμε μόνο τη συντήρηση του κήπου. Όταν ένα φυτό ή
-            δέντρο παρουσιάζει ασθένεια ή κάποιο πρόβλημα, υπάρχει συνεργασία με
-            γεωπόνο για την κατάλληλη αντιμετώπιση και τους απαραίτητους
-            ψεκασμούς.
+            {dict.phyto.body}
           </p>
         </div>
 
@@ -44,11 +49,10 @@ export default function Phytoprotection() {
               <Users className="size-5" aria-hidden />
             </div>
             <h3 className="font-display text-xl font-semibold">
-              Συνεργασία με γεωπόνο
+              {dict.phyto.card1Title}
             </h3>
             <p className="mt-2 text-sm leading-relaxed text-white/75">
-              Εξειδικευμένη υποστήριξη για φυτοπροστασία και ψεκασμούς, όταν το
-              πράσινο το χρειάζεται.
+              {dict.phyto.card1Body}
             </p>
           </div>
           <div className="rounded-2xl border border-white/15 bg-white/8 p-5 backdrop-blur-sm sm:p-6">
@@ -56,11 +60,10 @@ export default function Phytoprotection() {
               <Leaf className="size-5" aria-hidden />
             </div>
             <h3 className="font-display text-xl font-semibold">
-              Φροντίδα για φυτά &amp; δέντρα
+              {dict.phyto.card2Title}
             </h3>
             <p className="mt-2 text-sm leading-relaxed text-white/75">
-              Προσεγμένη αντιμετώπιση προβλημάτων που επηρεάζουν την υγεία και
-              την εμφάνιση του χώρου σας.
+              {dict.phyto.card2Body}
             </p>
           </div>
         </div>

@@ -1,22 +1,29 @@
 import { Phone } from "lucide-react";
 import { SITE } from "@/lib/constants";
+import { getDictionary } from "@/i18n/dictionaries";
+import type { Locale } from "@/i18n/config";
 
-export default function Footer() {
+type FooterProps = {
+  locale: Locale;
+};
+
+export default function Footer({ locale }: FooterProps) {
+  const dict = getDictionary(locale);
+
   return (
     <footer className="border-t border-green-deep/10 bg-green-deep pb-20 text-white md:pb-0">
       <div className="container-narrow px-5 py-12 md:py-14">
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="font-display text-2xl font-semibold">{SITE.name}</p>
-            <p className="mt-1 text-white/70">{SITE.tagline}</p>
+            <p className="font-display text-2xl font-semibold">{dict.site.name}</p>
+            <p className="mt-1 text-white/70">{dict.site.tagline}</p>
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/60">
-              Κηπουρική • Συντήρηση Κήπων • Φυσικός Χλοοτάπητας • Καθαρισμοί
-              Οικοπέδων • Φυτοπροστασία
+              {dict.footer.servicesLine}
             </p>
           </div>
 
           <div>
-            <p className="text-sm text-white/60">Τηλέφωνο</p>
+            <p className="text-sm text-white/60">{dict.footer.phone}</p>
             <a
               href={SITE.phoneHref}
               className="focus-ring mt-1 inline-flex items-center gap-2 text-xl font-semibold text-white transition hover:text-green-soft"
@@ -29,9 +36,9 @@ export default function Footer() {
 
         <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-white/50 sm:flex-row sm:items-center sm:justify-between">
           <div className="space-y-3">
-            <p>Copyright © 2026 {SITE.name}</p>
+            <p>Copyright © 2026 {dict.site.name}</p>
             <p className="flex flex-wrap items-center gap-2">
-              <span>Φτιάχτηκε από</span>
+              <span>{dict.footer.madeBy}</span>
               <a
                 href="https://www.nexusdevstudio.gr"
                 target="_blank"
@@ -43,7 +50,7 @@ export default function Footer() {
             </p>
           </div>
           <a href="#top" className="focus-ring rounded-md hover:text-white">
-            Επιστροφή στην κορυφή
+            {dict.footer.backToTop}
           </a>
         </div>
       </div>

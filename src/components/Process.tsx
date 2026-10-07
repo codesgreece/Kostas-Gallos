@@ -1,6 +1,14 @@
-import { PROCESS_STEPS } from "@/lib/constants";
+import { getDictionary } from "@/i18n/dictionaries";
+import type { Locale } from "@/i18n/config";
 
-export default function Process() {
+type ProcessProps = {
+  locale: Locale;
+};
+
+export default function Process({ locale }: ProcessProps) {
+  const dict = getDictionary(locale);
+  const steps = dict.process.steps;
+
   return (
     <section
       id="diadikasia"
@@ -10,23 +18,23 @@ export default function Process() {
       <div className="container-narrow">
         <div className="mx-auto max-w-2xl text-center">
           <p className="mb-3 text-sm font-semibold tracking-[0.16em] text-green-natural uppercase">
-            Διαδικασία
+            {dict.process.eyebrow}
           </p>
           <h2
             id="process-heading"
             className="font-display text-3xl font-semibold text-green-deep sm:text-4xl md:text-[2.75rem]"
           >
-            Πώς δουλεύουμε
+            {dict.process.title}
           </h2>
         </div>
 
         <ol className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-          {PROCESS_STEPS.map((step, index) => (
+          {steps.map((step, index) => (
             <li
               key={step.number}
               className="relative rounded-[1.35rem] border border-green-deep/8 bg-white p-6 sm:p-7"
             >
-              {index < PROCESS_STEPS.length - 1 && (
+              {index < steps.length - 1 && (
                 <span
                   className="absolute top-10 -right-3 hidden h-px w-6 bg-beige xl:block"
                   aria-hidden
