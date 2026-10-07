@@ -1,4 +1,5 @@
 import { Phone } from "lucide-react";
+import BrandLogo from "@/components/BrandLogo";
 import { SITE } from "@/lib/constants";
 import { getDictionary } from "@/i18n/dictionaries";
 import type { Locale } from "@/i18n/config";
@@ -13,11 +14,20 @@ export default function Footer({ locale }: FooterProps) {
   return (
     <footer className="border-t border-green-deep/10 bg-green-deep pb-20 text-white md:pb-0">
       <div className="container-narrow px-5 py-12 md:py-14">
-        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="font-display text-2xl font-semibold">{dict.site.name}</p>
+        <div className="flex flex-col items-center gap-8 text-center">
+          <div className="flex flex-col items-center">
+            <a href="#top" className="focus-ring inline-flex rounded-full">
+              <BrandLogo
+                alt={dict.site.name}
+                className="h-24 w-24 shadow-[0_10px_30px_rgba(0,0,0,0.25)] md:h-28 md:w-28"
+                sizes="112px"
+              />
+            </a>
+            <p className="font-display mt-4 text-2xl font-semibold">
+              {dict.site.name}
+            </p>
             <p className="mt-1 text-white/70">{dict.site.tagline}</p>
-            <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/60">
+            <p className="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-white/60">
               {dict.footer.servicesLine}
             </p>
           </div>

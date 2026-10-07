@@ -88,7 +88,11 @@ export async function generateMetadata({
       images: ["/og-image.svg"],
     },
     icons: {
-      icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+      icon: [
+        { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+        { url: "/logo-192.png", sizes: "192x192", type: "image/png" },
+      ],
+      apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
     },
     robots: {
       index: true,
@@ -113,7 +117,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
     description: dict.site.description,
     url: SITE.url,
     telephone: `+30${SITE.phone}`,
-    image: `${SITE.url}/og-image.svg`,
+    image: `${SITE.url}/logo.png`,
     knowsAbout: dict.services.items.map((item) => item.title),
   };
 

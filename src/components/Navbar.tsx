@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Menu, Phone, X } from "lucide-react";
+import BrandLogo from "@/components/BrandLogo";
 import LanguagePill from "@/components/LanguagePill";
 import { NAV_HREFS, SITE } from "@/lib/constants";
 import { getDictionary } from "@/i18n/dictionaries";
@@ -54,60 +55,12 @@ export default function Navbar({ locale }: NavbarProps) {
       }`}
     >
       <nav
-        className="container-narrow relative z-[61] flex items-center justify-between gap-3 px-5 py-3.5 md:gap-4 md:py-4"
+        className={`container-narrow relative z-[61] grid grid-cols-[1fr_auto_1fr] items-center gap-2 px-4 transition-[padding] duration-300 sm:px-5 ${
+          scrolled ? "py-2 md:py-2.5" : "py-3 md:py-3.5"
+        }`}
         aria-label={dict.a11y.mainNav}
       >
-        <a
-          href="#top"
-          className="focus-ring group min-w-0 rounded-lg"
-          onClick={() => setOpen(false)}
-        >
-          <span
-            className={`font-display block truncate text-lg font-semibold tracking-tight transition-colors md:text-xl ${
-              solid ? "text-green-deep" : "text-white"
-            }`}
-          >
-            {dict.site.name}
-          </span>
-          <span
-            className={`block text-[0.7rem] tracking-wide md:text-xs ${
-              solid ? "text-muted" : "text-white/75"
-            }`}
-          >
-            {dict.site.tagline}
-          </span>
-        </a>
-
-        <ul className="hidden items-center gap-7 xl:flex">
-          {links.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className={`focus-ring rounded-md text-sm font-medium transition-colors hover:text-green-natural ${
-                  scrolled ? "text-ink/85" : "text-white/90 hover:text-white"
-                }`}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        <div className="flex items-center gap-2 sm:gap-2.5">
-          <LanguagePill locale={locale} solid={solid} />
-
-          <a
-            href={SITE.phoneHref}
-            className={`focus-ring hidden items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold transition-all lg:inline-flex ${
-              solid
-                ? "bg-green-deep text-white hover:bg-green-mid"
-                : "bg-white text-green-deep hover:bg-green-mist"
-            }`}
-          >
-            <Phone className="size-4" aria-hidden />
-            {SITE.phoneDisplay}
-          </a>
-
+        <div className="flex items-center justify-start gap-2">
           <button
             type="button"
             className={`focus-ring relative z-[62] inline-flex size-11 items-center justify-center rounded-full xl:hidden ${
@@ -122,6 +75,55 @@ export default function Navbar({ locale }: NavbarProps) {
           >
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
+
+          <ul className="hidden items-center gap-5 xl:flex 2xl:gap-7">
+            {links.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className={`focus-ring rounded-md text-sm font-medium transition-colors hover:text-green-natural ${
+                    scrolled ? "text-ink/85" : "text-white/90 hover:text-white"
+                  }`}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <a
+          href="#top"
+          className="focus-ring group relative z-[63] justify-self-center rounded-full"
+          onClick={() => setOpen(false)}
+          aria-label={dict.site.name}
+        >
+          <BrandLogo
+            alt={dict.site.name}
+            priority
+            className={`rounded-full shadow-[0_8px_28px_rgba(20,53,40,0.18)] transition-all duration-300 ${
+              scrolled
+                ? "h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16"
+                : "h-14 w-14 sm:h-16 sm:w-16 md:h-[4.75rem] md:w-[4.75rem]"
+            }`}
+            sizes="(max-width: 640px) 56px, (max-width: 768px) 64px, 76px"
+          />
+        </a>
+
+        <div className="flex items-center justify-end gap-2 sm:gap-2.5">
+          <LanguagePill locale={locale} solid={solid} />
+
+          <a
+            href={SITE.phoneHref}
+            className={`focus-ring hidden items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold transition-all lg:inline-flex ${
+              solid
+                ? "bg-green-deep text-white hover:bg-green-mid"
+                : "bg-white text-green-deep hover:bg-green-mist"
+            }`}
+          >
+            <Phone className="size-4" aria-hidden />
+            {SITE.phoneDisplay}
+          </a>
         </div>
       </nav>
 
