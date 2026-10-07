@@ -74,7 +74,13 @@ export default function ScrollFallingLeaves() {
     let width = 0;
     let height = 0;
 
-    const maxParticles = () => (width < 1100 ? 22 : 36);
+    const isMobile = () => width < 768;
+
+    const maxParticles = () => {
+      if (width < 480) return 14;
+      if (width < 900) return 22;
+      return 36;
+    };
 
     function resize() {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -88,14 +94,16 @@ export default function ScrollFallingLeaves() {
     }
 
     function canopyOrigin() {
-      // Right-side canopy zone
-      const treeWidth = Math.min(width * 0.22, 280);
+      // Right-side canopy — tighter on phones so leaves still read
+      const treeWidth = isMobile()
+        ? Math.min(width * 0.42, 170)
+        : Math.min(width * 0.22, 280);
       const canopyLeft = width - treeWidth * 0.98;
-      const canopyRight = width - treeWidth * 0.05;
-      const canopyTop = height * 0.05;
-      const canopyBottom = height * 0.4;
+      const canopyRight = width - treeWidth * 0.02;
+      const canopyTop = height * (isMobile() ? 0.12 : 0.05);
+      const canopyBottom = height * (isMobile() ? 0.48 : 0.4);
       return {
-        x: canopyLeft + Math.random() * Math.max(24, canopyRight - canopyLeft),
+        x: canopyLeft + Math.random() * Math.max(20, canopyRight - canopyLeft),
         y: canopyTop + Math.random() * (canopyBottom - canopyTop),
       };
     }
@@ -103,14 +111,17 @@ export default function ScrollFallingLeaves() {
     function spawn(count: number, burst = false) {
       if (!sprites.length) return;
       const cap = maxParticles();
+      const mobile = isMobile();
       for (let i = 0; i < count && particles.length < cap; i++) {
         const origin = canopyOrigin();
         const sprite = Math.floor(Math.random() * sprites.length);
-        const size = 16 + Math.random() * 26;
+        const size = mobile
+          ? 14 + Math.random() * 20
+          : 16 + Math.random() * 26;
         particles.push({
           x: origin.x,
           y: origin.y,
-          vx: -0.4 - Math.random() * 1.5 - (burst ? Math.random() * 0.9 : 0),
+          vx: -0.35 - Math.random() * (mobile ? 1.1 : 1.5) - (burst ? 0.6 : 0),
           vy: 0.12 + Math.random() * 0.5,
           rot: Math.random() * Math.PI * 2,
           vr: (Math.random() - 0.5) * 0.08,
@@ -120,9 +131,9 @@ export default function ScrollFallingLeaves() {
           flutter: 0.6 + Math.random() * 1.2,
           flip: Math.random() * Math.PI * 2,
           vFlip: 0.02 + Math.random() * 0.05,
-          opacity: 0.62 + Math.random() * 0.35,
+          opacity: 0.7 + Math.random() * 0.28,
           life: 0,
-          maxLife: 4500 + Math.random() * 4000,
+          maxLife: 4000 + Math.random() * 3500,
         });
       }
     }
@@ -198,8 +209,8 @@ export default function ScrollFallingLeaves() {
         ctx.restore();
       }
 
-      if (window.scrollY > height * 0.3 && particles.length < 8) {
-        if (Math.random() < 0.028) spawn(1);
+      if (window.scrollY > height * 0.2 && particles.length < (isMobile() ? 5 : 8)) {
+        if (Math.random() < (isMobile() ? 0.04 : 0.028)) spawn(1);
       }
 
       raf = requestAnimationFrame(tick);
@@ -211,19 +222,18 @@ export default function ScrollFallingLeaves() {
       lastScrollY = y;
 
       if (dy > 0) {
-        scrollBoost = Math.min(9, scrollBoost + dy * 0.05);
-        const count = Math.min(6, Math.floor(scrollBoost));
-        if (count > 0 && Math.random() < 0.9) {
-          spawn(count, dy > 24);
+        scrollBoost = Math.min(9, scrollBoost + dy * (isMobile() ? 0.07 : 0.05));
+        const count = Math.min(isMobile() ? 4 : 6, Math.floor(scrollBoost));
+        if (count > 0 && Math.random() < 0.92) {
+          spawn(count, dy > 18);
           scrollBoost *= 0.32;
         }
       }
 
-      const progress = Math.min(1, y / (height * 0.5));
-      wrap.style.setProperty(
-        "--leaf-tree-opacity",
-        String(0.34 + progress * 0.42),
-      );
+      const progress = Math.min(1, y / (height * 0.45));
+      const base = isMobile() ? 0.42 : 0.34;
+      const span = isMobile() ? 0.38 : 0.42;
+      wrap.style.setProperty("--leaf-tree-opacity", String(base + progress * span));
     }
 
     let loaded = 0;
@@ -236,7 +246,7 @@ export default function ScrollFallingLeaves() {
         loaded += 1;
         if (loaded === LEAF_SRCS.length) {
           resize();
-          spawn(2);
+          spawn(isMobile() ? 3 : 2);
           lastTs = 0;
           raf = requestAnimationFrame(tick);
         }
@@ -252,7 +262,7 @@ export default function ScrollFallingLeaves() {
     });
 
     resize();
-    wrap.style.setProperty("--leaf-tree-opacity", "0.4");
+    wrap.style.setProperty("--leaf-tree-opacity", isMobile() ? "0.5" : "0.4");
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", resize);
 
@@ -271,18 +281,18 @@ export default function ScrollFallingLeaves() {
   return (
     <div
       ref={wrapRef}
-      className="pointer-events-none fixed inset-0 z-[40] hidden overflow-hidden xl:block"
+      className="pointer-events-none fixed inset-0 z-[40] overflow-hidden"
       aria-hidden
       data-motion="active"
     >
       <div
-        className="absolute inset-y-0 right-0 w-[min(24vw,300px)] select-none"
+        className="absolute inset-y-0 right-0 w-[42vw] max-w-[170px] select-none sm:w-[min(28vw,240px)] sm:max-w-none xl:w-[min(24vw,300px)]"
         style={{
-          opacity: "var(--leaf-tree-opacity, 0.32)",
+          opacity: "var(--leaf-tree-opacity, 0.45)",
           maskImage:
-            "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.35) 22%, black 55%, black 100%)",
+            "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.4) 18%, black 52%, black 100%)",
           WebkitMaskImage:
-            "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.35) 22%, black 55%, black 100%)",
+            "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.4) 18%, black 52%, black 100%)",
         }}
       >
         <Image
@@ -291,8 +301,8 @@ export default function ScrollFallingLeaves() {
           width={688}
           height={900}
           priority={false}
-          sizes="260px"
-          className="absolute right-[-6%] bottom-[-2%] h-[min(78vh,720px)] w-auto max-w-[min(22vw,280px)] object-contain object-right-bottom drop-shadow-[0_16px_36px_rgba(20,53,40,0.14)] transition-opacity duration-700"
+          sizes="(max-width: 640px) 160px, (max-width: 1280px) 220px, 280px"
+          className="absolute right-[-10%] bottom-[-2%] h-[min(62vh,520px)] w-auto max-w-[min(40vw,160px)] object-contain object-right-bottom drop-shadow-[0_16px_36px_rgba(20,53,40,0.14)] transition-opacity duration-700 sm:right-[-8%] sm:h-[min(70vh,640px)] sm:max-w-[min(26vw,220px)] xl:right-[-6%] xl:h-[min(78vh,720px)] xl:max-w-[min(22vw,280px)]"
         />
       </div>
 
