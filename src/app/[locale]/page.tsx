@@ -4,7 +4,7 @@ import ExperienceSection from "@/components/ExperienceSection";
 import Services from "@/components/Services";
 import Phytoprotection from "@/components/Phytoprotection";
 import WhyChooseUs from "@/components/WhyChooseUs";
-import BeforeAfter from "@/components/BeforeAfter";
+import WorkGallery from "@/components/WorkGallery";
 import Process from "@/components/Process";
 import CTA from "@/components/CTA";
 import Contact from "@/components/Contact";
@@ -29,7 +29,7 @@ export default async function Home({ params }: PageProps) {
         <Services locale={locale} />
         <Phytoprotection locale={locale} />
         <WhyChooseUs locale={locale} />
-        <BeforeAfter locale={locale} />
+        <WorkGallery locale={locale} />
         <Process locale={locale} />
         <CTA locale={locale} />
         <Contact locale={locale} />

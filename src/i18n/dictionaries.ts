@@ -66,14 +66,12 @@ export type Dictionary = {
     title: string;
     items: string[];
   };
-  beforeAfter: {
+  gallery: {
     eyebrow: string;
     title: string;
     intro: string;
-    before: string;
-    after: string;
-    placeholder: string;
-    dimensions: string;
+    photoFallback: string;
+    photoAlts: string[];
   };
   process: {
     eyebrow: string;
@@ -239,15 +237,22 @@ const el: Dictionary = {
       "Από έναν μικρό κήπο έως ένα μεγάλο οικόπεδο",
     ],
   },
-  beforeAfter: {
-    eyebrow: "Αποτελέσματα",
-    title: "Από τον ακατάστατο χώρο στον κήπο που θέλεις",
+  gallery: {
+    eyebrow: "Έργα",
+    title: "Στιγμές από τους κήπους μας",
     intro:
-      "Εδώ μπορούν να προστεθούν πραγματικές φωτογραφίες πριν και μετά από ολοκληρωμένες εργασίες.",
-    before: "Πριν",
-    after: "Μετά",
-    placeholder: "Placeholder φωτογραφίας — αντικαταστήστε με πραγματικό έργο",
-    dimensions: "Προτεινόμενες διαστάσεις: 1200×900",
+      "Πραγματικές φωτογραφίες από εργασίες στον χώρο — καθαρισμός, φροντίδα και πράσινο που αναπνέει.",
+    photoFallback: "Φωτογραφία από εργασία κήπου",
+    photoAlts: [
+      "Πράσινος κήπος με γκαζόν και πέτρινο τοίχο",
+      "Κήπος με θέα στον λόφο μετά από φροντίδα",
+      "Καθαρισμός φράχτη και ξεραμένων κλαδιών",
+      "Συντήρηση πέτρινου τοίχου και μεταλλικού φράχτη",
+      "Αφαίρεση αναρριχώμενων φυτών από φράχτη",
+      "Συλλογή κλαδεμάτων σε σακούλα κήπου",
+      "Καθαρισμός ξεραμένης φυλλωσιάς από φράχτη",
+      "Κουρεμένος θάμνος και γκαζόν με θέα στη θάλασσα",
+    ],
   },
   process: {
     eyebrow: "Διαδικασία",
@@ -437,15 +442,22 @@ const en: Dictionary = {
       "From a small garden to a large plot",
     ],
   },
-  beforeAfter: {
-    eyebrow: "Results",
-    title: "From an untidy space to the garden you want",
+  gallery: {
+    eyebrow: "Projects",
+    title: "Moments from our gardens",
     intro:
-      "Real before-and-after photos from completed projects can be added here.",
-    before: "Before",
-    after: "After",
-    placeholder: "Photo placeholder — replace with a real project",
-    dimensions: "Recommended size: 1200×900",
+      "Real photos from work on site — cleanup, care, and gardens that breathe again.",
+    photoFallback: "Garden work photo",
+    photoAlts: [
+      "Green lawn garden with a stone wall",
+      "Garden with hillside view after care",
+      "Fence cleanup and dried brush removal",
+      "Stone wall and metal fence maintenance",
+      "Climbing plants cleared from a fence",
+      "Garden clippings collected in a bulk bag",
+      "Dried foliage cleared from a fence",
+      "Trimmed hedge and lawn with sea view",
+    ],
   },
   process: {
     eyebrow: "Process",
@@ -635,15 +647,22 @@ const de: Dictionary = {
       "Vom kleinen Garten bis zum großen Grundstück",
     ],
   },
-  beforeAfter: {
-    eyebrow: "Ergebnisse",
-    title: "Vom ungepflegten Raum zum Garten, den Sie wollen",
+  gallery: {
+    eyebrow: "Projekte",
+    title: "Momente aus unseren Gärten",
     intro:
-      "Hier können echte Vorher-Nachher-Fotos abgeschlossener Arbeiten ergänzt werden.",
-    before: "Vorher",
-    after: "Nachher",
-    placeholder: "Foto-Platzhalter — durch ein echtes Projekt ersetzen",
-    dimensions: "Empfohlene Größe: 1200×900",
+      "Echte Fotos von der Arbeit vor Ort — Reinigung, Pflege und Gärten, die wieder atmen.",
+    photoFallback: "Foto einer Gartenarbeit",
+    photoAlts: [
+      "Grüner Rasengarten mit Steinmauer",
+      "Garten mit Hügelblick nach der Pflege",
+      "Zaunreinigung und Entfernung von Totholz",
+      "Pflege von Steinmauer und Metallzaun",
+      "Kletterpflanzen vom Zaun entfernt",
+      "Gartenschnitt in einem Big Bag gesammelt",
+      "Vertrocknetes Laub vom Zaun entfernt",
+      "Geschnittene Hecke und Rasen mit Meerblick",
+    ],
   },
   process: {
     eyebrow: "Ablauf",
