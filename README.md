@@ -29,6 +29,26 @@ npm start
 
 - Τηλέφωνο και κείμενα: `src/lib/constants.ts`
 - URL ιστότοπου (SEO): μεταβλητή περιβάλλοντος `NEXT_PUBLIC_SITE_URL` (π.χ. `https://kostaskipoi.vercel.app`)
+- Admin φωτογραφιών: δείτε παρακάτω
+
+## Admin panel φωτογραφιών
+
+Διαδρομή: [/admin](http://localhost:3000/admin)
+
+1. Αντιγράψτε `.env.example` σε `.env.local`
+2. Ορίστε `ADMIN_PASSWORD`
+3. Τρέξτε `npm run dev` και συνδεθείτε στο `/admin`
+
+Από το panel μπορείτε να:
+
+- ανεβάσετε φωτογραφίες έργων
+- επεξεργαστείτε alt κείμενο (EL/EN)
+- αλλάξετε σειρά εμφάνισης
+- διαγράψετε φωτογραφίες από τη συλλογή
+
+Τοπικά οι νέες φωτογραφίες αποθηκεύονται στο `public/uploads/gallery` και το manifest στο `data/photos.json`.
+
+Στο Vercel, για μόνιμα ανεβάσματα ορίστε και `BLOB_READ_WRITE_TOKEN` (Vercel Blob). Χωρίς αυτό η συλλογή διαβάζεται από το `data/photos.json`, αλλά τα νέα uploads δεν διατηρούνται.
 
 ## Vercel deploy
 

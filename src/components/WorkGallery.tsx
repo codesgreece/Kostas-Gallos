@@ -1,17 +1,7 @@
 import Image from "next/image";
 import { getDictionary } from "@/i18n/dictionaries";
 import type { Locale } from "@/i18n/config";
-
-const WORK_PHOTOS = [
-  "/gallery/work-01.jpg",
-  "/gallery/work-02.jpg",
-  "/gallery/work-03.jpg",
-  "/gallery/work-04.jpg",
-  "/gallery/work-05.jpg",
-  "/gallery/work-06.jpg",
-  "/gallery/work-07.jpg",
-  "/gallery/work-08.jpg",
-] as const;
+import { getPhotos, photoAltForLocale } from "@/lib/photos";
 
 function BushPhoto({
   src,
@@ -22,6 +12,8 @@ function BushPhoto({
   alt: string;
   priority?: boolean;
 }) {
+  const isRemote = src.startsWith("http");
+
   return (
     <figure className="group mx-auto w-full max-w-[14.75rem] sm:max-w-[13.75rem] lg:max-w-[14.25rem]">
       <div className="relative aspect-[4/3] transition-transform duration-500 ease-out will-change-transform group-hover:-translate-y-1.5">
@@ -36,6 +28,7 @@ function BushPhoto({
             sizes="(max-width: 640px) 44vw, (max-width: 1024px) 26vw, 220px"
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
             priority={priority}
+            unoptimized={isRemote}
           />
         </div>
 
@@ -56,8 +49,9 @@ type WorkGalleryProps = {
   locale: Locale;
 };
 
-export default function WorkGallery({ locale }: WorkGalleryProps) {
+export default async function WorkGallery({ locale }: WorkGalleryProps) {
   const dict = getDictionary(locale);
+  const photos = await getPhotos();
 
   return (
     <section
@@ -90,16 +84,24 @@ export default function WorkGallery({ locale }: WorkGalleryProps) {
           </p>
         </div>
 
-        <div className="mt-10 grid grid-cols-2 justify-items-center gap-x-3 gap-y-7 sm:grid-cols-3 sm:gap-x-5 sm:gap-y-8 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-9">
-          {WORK_PHOTOS.map((src, index) => (
-            <BushPhoto
-              key={src}
-              src={src}
-              alt={dict.gallery.photoAlts[index] ?? dict.gallery.photoFallback}
-              priority={index < 2}
-            />
-          ))}
-        </div>
+        {photos.length > 0 ? (
+          <div className="mt-10 grid grid-cols-2 justify-items-center gap-x-3 gap-y-7 sm:grid-cols-3 sm:gap-x-5 sm:gap-y-8 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-9">
+            {photos.map((photo, index) => (
+              <BushPhoto
+                key={photo.id}
+                src={photo.src}
+                alt={photoAltForLocale(
+                  photo,
+                  locale,
+                  dict.gallery.photoFallback,
+                )}
+                priority={index < 2}
+              />
+            ))}
+          </div>
+        ) : (
+          <p className="mt-10 text-center text-muted">{dict.gallery.photoFallback}</p>
+        )}
       </div>
     </section>
   );

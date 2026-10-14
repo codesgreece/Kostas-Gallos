@@ -1,0 +1,66 @@
+[
+  {
+    "id": "work-01",
+    "src": "/gallery/work-01.jpg",
+    "alt": "Πράσινος κήπος με γκαζόν και πέτρινο τοίχο",
+    "altEn": "Green garden with lawn and stone wall",
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "storage": "static"
+  },
+  {
+    "id": "work-02",
+    "src": "/gallery/work-02.jpg",
+    "alt": "Κήπος με θέα στον λόφο μετά από φροντίδα",
+    "altEn": "Garden with hill view after maintenance",
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "storage": "static"
+  },
+  {
+    "id": "work-03",
+    "src": "/gallery/work-03.jpg",
+    "alt": "Καθαρισμός φράχτη και ξεραμένων κλαδιών",
+    "altEn": "Fence cleaning and dried branches",
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "storage": "static"
+  },
+  {
+    "id": "work-04",
+    "src": "/gallery/work-04.jpg",
+    "alt": "Συντήρηση πέτρινου τοίχου και μεταλλικού φράχτη",
+    "altEn": "Stone wall and metal fence maintenance",
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "storage": "static"
+  },
+  {
+    "id": "work-05",
+    "src": "/gallery/work-05.jpg",
+    "alt": "Αφαίρεση αναρριχώμενων φυτών από φράχτη",
+    "altEn": "Removing climbing plants from a fence",
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "storage": "static"
+  },
+  {
+    "id": "work-06",
+    "src": "/gallery/work-06.jpg",
+    "alt": "Συλλογή κλαδεμάτων σε σακούλα κήπου",
+    "altEn": "Collecting prunings in a garden bag",
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "storage": "static"
+  },
+  {
+    "id": "work-07",
+    "src": "/gallery/work-07.jpg",
+    "alt": "Καθαρισμός ξεραμένης φυλλωσιάς από φράχτη",
+    "altEn": "Cleaning dried foliage from a fence",
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "storage": "static"
+  },
+  {
+    "id": "work-08",
+    "src": "/gallery/work-08.jpg",
+    "alt": "Κουρεμένος θάμνος και γκαζόν με θέα στη θάλασσα",
+    "altEn": "Trimmed shrub and lawn with sea view",
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "storage": "static"
+  }
+]
