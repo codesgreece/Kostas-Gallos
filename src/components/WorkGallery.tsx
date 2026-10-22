@@ -3,7 +3,7 @@ import { getDictionary } from "@/i18n/dictionaries";
 import type { Locale } from "@/i18n/config";
 import { getPhotos, photoAltForLocale } from "@/lib/photos";
 
-function BushPhoto({
+function GalleryPhoto({
   src,
   alt,
   priority = false,
@@ -15,30 +15,16 @@ function BushPhoto({
   const isRemote = src.startsWith("http");
 
   return (
-    <figure className="group mx-auto w-full max-w-[14.75rem] sm:max-w-[13.75rem] lg:max-w-[14.25rem]">
-      <div className="relative aspect-[4/3] transition-transform duration-500 ease-out will-change-transform group-hover:-translate-y-1.5">
-        <div
-          className="absolute inset-[15%] overflow-hidden bg-green-deep/10 shadow-[inset_0_0_24px_rgba(20,53,40,0.12)]"
-          style={{ borderRadius: "50%" }}
-        >
-          <Image
-            src={src}
-            alt={alt}
-            fill
-            sizes="(max-width: 640px) 44vw, (max-width: 1024px) 26vw, 220px"
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
-            priority={priority}
-            unoptimized={isRemote}
-          />
-        </div>
-
+    <figure className="group w-full">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-[1.1rem] bg-green-deep/10 shadow-[0_14px_36px_rgba(20,53,40,0.12)] transition-transform duration-500 ease-out will-change-transform group-hover:-translate-y-1">
         <Image
-          src="/frames/bush-frame.webp"
-          alt=""
+          src={src}
+          alt={alt}
           fill
-          sizes="(max-width: 640px) 48vw, 230px"
-          className="pointer-events-none select-none object-contain drop-shadow-[0_12px_24px_rgba(20,53,40,0.16)]"
-          aria-hidden
+          sizes="(max-width: 640px) 48vw, (max-width: 1024px) 30vw, 260px"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+          priority={priority}
+          unoptimized={isRemote}
         />
       </div>
     </figure>
@@ -85,9 +71,9 @@ export default async function WorkGallery({ locale }: WorkGalleryProps) {
         </div>
 
         {photos.length > 0 ? (
-          <div className="mt-10 grid grid-cols-2 justify-items-center gap-x-3 gap-y-7 sm:grid-cols-3 sm:gap-x-5 sm:gap-y-8 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-9">
+          <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 lg:gap-5">
             {photos.map((photo, index) => (
-              <BushPhoto
+              <GalleryPhoto
                 key={photo.id}
                 src={photo.src}
                 alt={photoAltForLocale(
